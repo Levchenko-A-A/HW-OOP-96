@@ -7,29 +7,22 @@
         xmlns:vm="clr-namespace:HW_OOP_96.ViewModel"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid >
-        <Grid.RowDefinitions>
-            <RowDefinition Height="90*"/>
-            <RowDefinition Height="10*"/>
-        </Grid.RowDefinitions>
-    <DataGrid Grid.Row = "0" ItemsSource = "{Binding Products}" AutoGenerateColumns="False" >
-        <DataGrid.Columns >
-            <DataGridTextColumn Header = "Модель" Binding = "{Binding Id}"
-                                Width="12*"/>
-            <DataGridTextColumn Header = "Название" Binding = "{Binding Name}"
-                                Width="20*"/>
-            <DataGridTextColumn Header = "Описание" Binding = "{Binding Description}"
-                                Width="50*"/>
-            <DataGridTextColumn Header = "Цена" Binding = "{Binding Price}" 
-                                Width="10*"/>
-            <DataGridTextColumn Header = "Количество" Binding = "{Binding Quantity}"
-                                Width="15*"/>
-        </DataGrid.Columns>
-        <DataGrid.DataContext >
+    <DockPanel>
+        <DockPanel.DataContext>
             <vm:GridViewViewModel/>
-        </DataGrid.DataContext >
-    </DataGrid >
-        <Button Grid.Row="1" Content="Сохранить в CSV" 
-                Margin="250,10" Command="{Binding SaveToCSV}"/>
-    </Grid >
+        </DockPanel.DataContext>
+        <StackPanel>
+            <DataGrid DockPanel.Dock="Left" ItemsSource="{Binding Products}"
+              AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Модель" Binding="{Binding Id}" Width="12*"/>
+                    <DataGridTextColumn Header="Название" Binding="{Binding Name}" Width="20*"/>
+                    <DataGridTextColumn Header="Описание" Binding="{Binding Description}" Width="50*"/>
+                    <DataGridTextColumn Header="Цена" Binding="{Binding Price}" Width="10*"/>
+                    <DataGridTextColumn Header="Количество" Binding="{Binding Quantity}" Width="15*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button Content="Сохранить в CSV" Command="{Binding SaveToCSV}"/>
+        </StackPanel>
+    </DockPanel>
 </Window>
